@@ -71,3 +71,13 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
+.point {
+  stroke: rgb(171, 171, 171);
+  stroke-width: 1;
+}
+
+.sideBarRef {
+  opacity: 0;
+}

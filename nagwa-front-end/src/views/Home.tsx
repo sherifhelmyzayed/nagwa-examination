@@ -1,7 +1,59 @@
 import React, { useState } from 'react'
 import AnswerButton from '../components/AnswerButton';
+import gsap, { Power1, Power3 } from 'gsap';
+import ProgressBar from '../components/ProgressBar';
+
+
+const showBarFun = () => {
+    gsap.to('.svgMain', {
+        rotate: 225,
+        duration: 1,
+        ease: Power3.easeInOut
+    })
+
+    gsap.to('.point2', {
+        rotate: 90,
+        x: 5,
+        y: -1,
+        duration: 1,
+        ease: Power3.easeInOut
+    })
+
+    gsap.to('.sideBarRef', {
+
+        duration: 1,
+        css: { zIndex: 5, opacity: 1 },
+    })
+
+
+}
+
+const hideBarFun = () => {
+    gsap.to('.svgMain', {
+
+        rotate: 0,
+        duration: 1,
+        ease: Power3.easeInOut
+    })
+
+    gsap.to('.point2', {
+        rotate: 0,
+        x: 0,
+        y: 0,
+        duration: 1,
+        ease: Power3.easeInOut
+    });
+
+    gsap.to('.sideBarRef', {
+        duration: 1,
+        css: { zIndex: -2, opacity: 0 },
+
+    })
+
+}
 
 const Home = (props: any) => {
+    const [showBar, setShowBar] = useState(false);
     const [quesIndex, setQuesIndex] = useState<number>(0);
     const [selectedAns, setSelectedAns] = useState<string | null>(null);
 
@@ -13,8 +65,14 @@ const Home = (props: any) => {
         if (!selectedAns) {
             console.log(questions[quesIndex].pos === ans);
         }
-
         setSelectedAns(ans);
+    }
+
+    const handleNextQues = () => {
+        setQuesIndex(quesIndex + 1)
+    }
+
+    const endExam = () => {
 
     }
 
@@ -24,31 +82,56 @@ const Home = (props: any) => {
 
             <>
                 <div className=" mx-auto grid grid-cols-3 gap-1 w-screen h-screen ">
-                    <div className="col-span-1 bg-white">
-                        <div className="progress">Progress Circle</div>
-
-                        <div>
-                            Questions Circles
+                    <div className="col-span-1 bg-white px-5">
+                        <div className="mx-auto w-48">
+                            <ProgressBar index={quesIndex} total={questions.length}/>
+                        </div>
+                        <div className='w-full flex flex-wrap'>
+                            {questions.map((item: any, key: number) => (
+                                <div className={`w-10 h-10 rounded-full ${quesIndex > key ? 'bg-lime-700' : 'bg-gray-300'} bg-gray-300 mx-1 mb-1 ${quesIndex === key ? 'border border-lime-600' : null}`}>
+                                    <div className="mx-auto text-white w-full  h-full flex justify-center items-center">
+                                        {key + 1}
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                         <div className="timer">
-                            Timer
+                            <button className={`
+                                w-44  bg-red-800 hover:bg-red-500 py-2 px-4 rounded
+                                text-white font-semibold hover:text-white
+                                border   border-red-300 hover:border-gray-600 focus:outline-none
+                                `}
+                                onClick={() => endExam()}
+                            >
+                                End Exam
+                            </button>
                         </div>
                     </div>
                     <div className="col-span-2 flex flex-col justify-between items-center h-full w-full bg-gray-200">
-                        <div className="flex justify-between">
+                        <div className="flex justify-between w-full pt-3 px-5">
                             <div>
-                                <h2>Category: <span>words</span></h2>
+                                <h2 className='text-gray-500 text-sm font-medium'>Category: <span className='text-lime-500 text-sm font-semibold'>words</span></h2>
                             </div>
-                            <div>Profile</div>
-                            <div>flag</div>
+                            <div className="cursor-pointer z-10 w-10 mt-2" onClick={() => {
+                                if (showBar) {
+                                    hideBarFun()
+                                } else {
+                                    showBarFun()
+                                }
+                                setShowBar(!showBar)
+                            }}>
+                                <svg width="20px" height="20px" viewBox="0 0 10 10" className='svgMain'>
+                                    <line className="point " x1="-5" x2="10" y1="5" y2="5" />
+                                    <line className="point point2" x1="0" x2="10" y1="1" y2="1" />
+                                </svg>
+                            </div>
                         </div>
                         <div className="Question">
                             <div className='text-gray-500 text-center mb-10'>
                                 <p>
-
                                     Question no. {quesIndex + 1} / {questions.length}
                                 </p>
-                                <h2 className='text-lg font-semibold'>
+                                <h2 className='text-2xl font-semibold mt-2'>
                                     {questions[quesIndex].word}
 
                                 </h2>
@@ -61,8 +144,8 @@ const Home = (props: any) => {
                             </div>
                         </div>
                         <div className="actionButtons">
-                            <button>
-                                Next
+                            <button onClick={() => handleNextQues()}>
+                                Next Question
                             </button>
                         </div>
                     </div>
