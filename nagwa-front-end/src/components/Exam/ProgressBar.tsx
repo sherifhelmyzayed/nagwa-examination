@@ -20,7 +20,7 @@ const ProgressBar = (props: any) => {
     }, [props])
 
     return (
-        <>
+        <div className="mx-auto w-48 flex flex-col justify-between items-center">
             <h2 className="text-gray-700 font-medium text-sm">{progressPercentage}% Completed!</h2>
             <div className='h-1 w-full bg-gray-300 transition-all'>
                 <div
@@ -29,7 +29,7 @@ const ProgressBar = (props: any) => {
                     className={`h-full `}>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

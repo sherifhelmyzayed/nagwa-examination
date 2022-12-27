@@ -12,6 +12,7 @@ import Data from './shared/TestData.json'
 function App() {
 
   const [questions, setQuestions] = useState<any>(null);
+  const [score, setScore] = useState<number>(0);
 
 
   // for axios call get questions endpoint
@@ -20,12 +21,27 @@ function App() {
   }, [])
 
 
+  const endExam = () => {
+
+    console.log(questions);
+
+    let counter = 0;
+
+    questions.map((item: any) => {
+      if (item.answer !== item.pos) {
+        return
+      }
+      counter++
+    })
+    setScore(counter);
+  }
+
 
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home questions={questions} setQuestions={setQuestions} />} />
+        <Route path="/" element={<Home questions={questions} setQuestions={setQuestions} endExam={endExam} />} />
         <Route path="/result" element={<Result />} />
       </Routes>
     </BrowserRouter>
