@@ -3,6 +3,7 @@ import AnswerButton from '../components/Exam/AnswerButton';
 import gsap, { Power3 } from 'gsap';
 import ProgressBar from '../components/Exam/ProgressBar';
 import ModalIcon from '../components/Exam/ModalIcon';
+import { useNavigate } from 'react-router-dom';
 
 
 interface QuestionInterface {
@@ -23,6 +24,7 @@ const Home = (props: any) => {
     const [quesIndex, setQuesIndex] = useState<number>(0);
     const [selectedAns, setSelectedAns] = useState<string | null>(null);
     const [answeredQuestionsCount, setAnsweredQuestionsCount] = useState<number>(0);
+    const navigate = useNavigate();
 
     const congratMsg = useRef<HTMLHeadingElement>(null);
 
@@ -88,6 +90,19 @@ const Home = (props: any) => {
         })
         setAnsweredQuestionsCount(count)
     }
+
+    const endExam = () => {
+        let counter = 0;
+        questions.map((item: any) => {
+            if (item.answer !== item.pos) {
+                return
+            }
+            counter++
+        })
+        props.setScore(counter);
+        navigate('/result')
+    }
+
 
 
     return (
@@ -172,7 +187,7 @@ const Home = (props: any) => {
                                 text-white font-semibold hover:text-white
                                 border   border-red-300 hover:border-gray-600 focus:outline-none
                                 `}
-                                onClick={() => props.endExam()}
+                                onClick={() => endExam()}
                             >
                                 End Exam
                             </button>

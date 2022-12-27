@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, redirect, useNavigate, Navigate } from 'react-router-dom'
 import Exam from './views/Exam'
 import Result from './views/Result'
 import './App.css'
@@ -21,28 +20,18 @@ function App() {
   }, [])
 
 
-  const endExam = () => {
-
-    console.log(questions);
-
-    let counter = 0;
-
-    questions.map((item: any) => {
-      if (item.answer !== item.pos) {
-        return
-      }
-      counter++
-    })
-    setScore(counter);
-  }
 
 
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Exam questions={questions} setQuestions={setQuestions} endExam={endExam} />} />
-        <Route path="/result" element={<Result score={score} questions={questions}/>} />
+        <Route path="/" element={<Exam
+          questions={questions}
+          setQuestions={setQuestions}
+          setScore={setScore}
+        />} />
+        <Route path="/result" element={<Result score={score} questions={questions} />} />
       </Routes>
     </BrowserRouter>
   )
