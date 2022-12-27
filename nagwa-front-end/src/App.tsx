@@ -31,7 +31,11 @@ function App() {
           setQuestions={setQuestions}
           setScore={setScore}
         />} />
-        <Route path="/result" element={<Result score={score} questions={questions} />} />
+        <Route path="/result" element={<Result
+          score={score}
+          questions={questions}
+          scoresList={Data.scoresList}
+        />} />
       </Routes>
     </BrowserRouter>
   )
