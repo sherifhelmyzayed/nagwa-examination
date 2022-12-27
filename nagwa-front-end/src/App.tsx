@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './views/Home'
+import Exam from './views/Exam'
 import Result from './views/Result'
 import './App.css'
 // import './styles/Index.scss';
@@ -41,8 +41,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home questions={questions} setQuestions={setQuestions} endExam={endExam} />} />
-        <Route path="/result" element={<Result />} />
+        <Route path="/" element={<Exam questions={questions} setQuestions={setQuestions} endExam={endExam} />} />
+        <Route path="/result" element={<Result score={score} questions={questions}/>} />
       </Routes>
     </BrowserRouter>
   )

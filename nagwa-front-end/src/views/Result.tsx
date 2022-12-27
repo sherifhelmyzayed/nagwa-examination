@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Result = () => {
+const Result = (props: any) => {
   return (
     <div>Result</div>
   )
