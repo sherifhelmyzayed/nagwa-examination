@@ -699,6 +699,11 @@ globals@^11.1.0:
   resolved "https://registry.yarnpkg.com/globals/-/globals-11.12.0.tgz#ab8795338868a0babd8525758018c2a7eb95c42e"
   integrity sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==
 
+gsap-trial@^3.11.4:
+  version "3.11.4"
+  resolved "https://registry.yarnpkg.com/gsap-trial/-/gsap-trial-3.11.4.tgz#ce46aa4ef4ac008f304b3773d5eb63926a0168a6"
+  integrity sha512-suiNsU6qQs6E1nDDMJb7VJNYXVzijMQE2bFCC4cwQAx+ycfM5jU1tp3R89FNQbz36BbMyc71N8jJOgGK71XJlA==
+
 gsap@^3.11.4:
   version "3.11.4"
   resolved "https://registry.yarnpkg.com/gsap/-/gsap-3.11.4.tgz#e6d972d3509a7431b86d81d6fc3bbeb6862e5ff1"
