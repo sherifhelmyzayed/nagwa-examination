@@ -7,7 +7,6 @@ const Result = (props: any) => {
     setRank(calculateRank())
   }, []);
 
-
   const calculateRank = () => {
     const scoreList = props.scoresList
     let counter = 0;
@@ -20,8 +19,11 @@ const Result = (props: any) => {
   }
 
   return (
-    <div className='w-screen h-screen flex justify-start items-center flex-col bg-gray-300 py-20'>
-      <ModalIcon />
+    <div className='w-screen h-screen flex justify-between items-center flex-col bg-gray-300 pb-20'>
+      <div className="items-self-end">
+
+        <ModalIcon />
+      </div>
       <div className="rounded bg-white px-20 py-5">
         <h2 className='text-center text-lime-800 font-bold text-xl '>Your score is: {props.score}</h2>
       </div>
