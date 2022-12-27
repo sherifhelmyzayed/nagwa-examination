@@ -25,7 +25,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home questions={questions} />} />
+        <Route path="/" element={<Home questions={questions} setQuestions={setQuestions} />} />
         <Route path="/result" element={<Result />} />
       </Routes>
     </BrowserRouter>

@@ -4,6 +4,16 @@ import gsap, { Power3 } from 'gsap';
 import ProgressBar from '../components/ProgressBar';
 
 
+interface QuestionInterface {
+    id: number;
+    word: string;
+    pos: string;
+    answer: string | null;
+}
+
+interface QuestionsInterface extends Array<QuestionInterface> {}
+
+
 const showBarFun = () => {
     gsap.to('.svgMain', {
         rotate: 225,
@@ -60,6 +70,7 @@ const Home = (props: any) => {
     const congratMsg = useRef<any>(null);
 
     const questions = props.questions;
+    const setQuestions = props.setQuestions;
 
     const selectAnswer = (ans: string) => {
 
@@ -82,6 +93,15 @@ const Home = (props: any) => {
             ease: Power3.easeInOut
         });
         setSelectedAns(ans);
+        setQuestions((current: QuestionsInterface) => {
+            const filteredQues = current.find((item: QuestionInterface) => item.id === questions[quesIndex].id);
+            if (!filteredQues) {
+                return
+            }
+            filteredQues.answer = ans
+            return (current)
+        }
+        )
     }
 
     const handleNextQues = () => {
@@ -92,7 +112,10 @@ const Home = (props: any) => {
             duration: 0.01,
             ease: Power3.easeInOut
         });
-        setQuesIndex(quesIndex + 1)
+        setQuesIndex(quesIndex + 1);
+        setSelectedAns(null)
+        console.log(questions);
+
     }
 
     const endExam = () => {
