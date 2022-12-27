@@ -2,14 +2,8 @@ import { useEffect, useRef } from "react";
 import gsap, { Power3 } from "gsap";
 
 const ProgressBar = (props: any) => {
-    let count = 0
-    props.questions.map((item:any)=>{
-        if(!item.answer) {
-            return
-        }
-        count ++
-    })
-    const progressPercentage = Math.round(count / props.total * 100);
+
+    const progressPercentage = Math.round(props.answeredQuestionsCount / props.total * 100);
     const progressBarRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {

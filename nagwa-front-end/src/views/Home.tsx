@@ -143,7 +143,7 @@ const Home = (props: any) => {
                 <div className=" mx-auto grid grid-cols-3 gap-1 w-screen h-screen ">
                     <div className="col-span-1 bg-white px-5 flex flex-col justify-between items-center  py-10 ">
                         <div className="mx-auto w-48 flex flex-col justify-between items-center">
-                            <ProgressBar questions={questions} total={questions.length} />
+                            <ProgressBar answeredQuestionsCount={answeredQuestionsCount} total={questions.length} />
                         </div>
                         <div className='w-full flex flex-wrap'>
                             {questions.map((item: QuestionInterface, key: number) => (
