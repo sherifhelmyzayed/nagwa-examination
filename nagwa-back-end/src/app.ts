@@ -14,6 +14,16 @@ interface QuestionInterface {
 
 interface QuestionsInterface extends Array<QuestionInterface> { }
 
+const calculateScore = (score, scoresList) => {
+    let counter = 0;
+    scoresList.map((item: number) => {
+        if (item < (score / 10 * 100)) {
+            counter++
+        }
+    })
+    return (Math.round(counter / scoresList.length * 100));
+}
+
 app.use(cors())
 
 
@@ -36,12 +46,23 @@ app.get('/word', async (req, res) => {
         console.log(err)
         res.send(err)
     }
-
-
 });
 
-app.get('/rank', (req, res) => {
-    res.send('rank endpoint works!');
+app.post('/rank/:score', async (req, res) => {
+    const scoreParam = req.params.score;
+    const score = parseInt(scoreParam)
+
+    try {
+        const data = await fs.promises.readFile(__dirname + '/testData.json', 'utf8')
+        const scoresList = JSON.parse(data).scoresList;
+        res.send(`${calculateScore(score, scoresList)}`)
+    }
+    catch (err) {
+        console.log(err)
+        res.send(err)
+    }
+
+
 });
 
 app.listen(port, () => {

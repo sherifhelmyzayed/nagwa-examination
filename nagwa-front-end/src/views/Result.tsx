@@ -1,22 +1,18 @@
 import { useEffect, useState } from 'react'
+import axios from 'axios';
 import ModalIcon from '../components/Exam/ModalIcon';
 
 const Result = (props: any) => {
-  const [rank, setRank] = useState<number | null>(null)
+  const [rank, setRank] = useState<number | null>(null);
+
   useEffect(() => {
-    setRank(calculateRank())
+    axios.post(`http://localhost:4000/rank/${props.score}`, {})
+    .then(res => {
+      setRank(res.data)
+    });
+    
   }, []);
 
-  const calculateRank = () => {
-    const scoreList = props.scoresList
-    let counter = 0;
-    scoreList.map((item: number) => {
-      if (item < (props.score / props.questions.length * 100)) {
-        counter++
-      }
-    })
-    return (Math.round(counter / scoreList.length * 100));
-  }
 
   return (
     <div className='w-screen h-screen flex justify-between items-center flex-col bg-gray-300 pb-20'>
@@ -35,7 +31,6 @@ const Result = (props: any) => {
             {props.questions.map((item: any, key: number) => {
 
               if (item.answer !== item.pos) {
-                console.log(item.word);
                 return (
                   <li className='text-red-800'>
                     {item.word}
