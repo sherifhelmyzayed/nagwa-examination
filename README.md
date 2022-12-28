@@ -4,12 +4,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
   <h3 align="center">A full stack examination system</h3>
-
 </div>
 
 
@@ -51,13 +46,12 @@ A full stack MERN examination project which a full examination experience for yo
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
 * React
+* Typescript
 * Tailwind
 * Gsap
 * NodeJS
 
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- GETTING STARTED -->
