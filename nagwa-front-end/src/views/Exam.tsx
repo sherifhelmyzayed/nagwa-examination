@@ -143,11 +143,6 @@ const Home = (props: any) => {
 
 
 
-
-
-
-
-
                 {/* Right-Side-Column */}
                 <div className="col-span-2 flex flex-col justify-between items-center h-full w-full bg-gray-200 pb-10 relative">
 
