@@ -75,6 +75,9 @@ const ModalIcon = () => {
                     <li>Quesions toggle through the left circles</li>
                     <li>Answered questions counter to track user progress</li>
                     <li>Added creative animations in GSAP</li>
+                    <li>User cannot go into result page if not taken the exam</li>
+                    <li>User can know wrong answers in result page</li>
+
                 </ul>
             </div>
         </>

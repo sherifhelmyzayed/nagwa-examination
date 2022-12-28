@@ -13,6 +13,7 @@ function App() {
 
   const [questions, setQuestions] = useState<any>(null);
   const [score, setScore] = useState<number>(0);
+  const [refresh, setRefresh] = useState<any>(false);
 
 
   // for axios call get questions endpoint
@@ -21,7 +22,7 @@ function App() {
     .then(res => {
       setQuestions(res.data);
     })
-  }, [])
+  }, [refresh])
 
 
 
@@ -39,6 +40,8 @@ function App() {
           score={score}
           questions={questions}
           scoresList={Data.scoresList}
+          refresh={refresh}
+          setRefresh={setRefresh}
         />} />
       </Routes>
     </BrowserRouter>
