@@ -76,20 +76,27 @@ _Below is an example of how you can instruct your audience on installing and set
    https://github.com/sherifhelmyzayed/nagwa-examination
    ```
    
-    2. Start the front end server
+2. Install yarn packages in front-end
  ```sh
- yarn run dev
+ cd nagwa-front-end
+ yarn install
  ```
  
-3. Install yarn packages in front-end
-   ```sh
-   cd ../nagwa-front-end
-   yarn install
-   ```
-       4. Start the node server
+3. Start the front end server
+```sh
+yarn run dev
+```
+
+4. Install yarn packages in front-end
  ```sh
- npm start
+ cd ../nagwa-back-end
+ npm install
  ```
+ 
+5. Start the node server
+```sh
+npm start
+```
 
 
 
@@ -101,6 +108,9 @@ _Below is an example of how you can instruct your audience on installing and set
 
 After running the project for the first time. You can answer all the questions before going to the result page. If corrected answer was selected on the first attampt. A feedback is going to appear.
 
+User can toggle between questions through the next question button or by selecting the question index on the right of the screen
+
+User can see progress of answered questions/missed questions through the entire exam process
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
