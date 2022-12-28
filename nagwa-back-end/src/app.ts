@@ -1,6 +1,7 @@
 import express from 'express';
 import fs from 'fs';
 import cors from 'cors';
+import data from './testData.json';
 
 const app = express();
 const port = 4000;
@@ -34,9 +35,8 @@ app.get('/', (req, res) => {
 app.get('/word', async (req, res) => {
 
     try {
-        const data = await fs.promises.readFile(__dirname + '/testData.json', 'utf8')
-        const wordList = JSON.parse(data).wordList;
-        const shuffle = (array: QuestionsInterface) => {
+        const wordList = data.wordList;
+        const shuffle = (array: any) => {
             return array.sort(() => 0.5 - Math.random());
         };
         const shuffledList = shuffle(wordList).slice(0, 10)
@@ -50,11 +50,10 @@ app.get('/word', async (req, res) => {
 
 app.post('/rank/:score', async (req, res) => {
     const scoreParam = req.params.score;
-    const score = parseInt(scoreParam)
+    const score = parseInt(scoreParam)    
 
     try {
-        const data = await fs.promises.readFile(__dirname + '/testData.json', 'utf8')
-        const scoresList = JSON.parse(data).scoresList;
+        const scoresList = data.scoresList;
         res.send(`${calculateScore(score, scoresList)}`)
     }
     catch (err) {
