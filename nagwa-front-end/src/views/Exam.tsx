@@ -32,6 +32,7 @@ const Home = (props: any) => {
     const setQuestions = props.setQuestions;
 
     const selectAnswer = (ans: string) => {
+
         // if there is no selected answer. Check for the correct answer and play animation
         if (!selectedAns && questions[quesIndex].pos === ans) {
             gsap.to(congratMsg.current, {
@@ -42,6 +43,8 @@ const Home = (props: any) => {
                 ease: Power3.easeInOut
             });
         }
+
+        // disable congratz text
         gsap.to(congratMsg.current, {
             css: {
                 opacity: 0,
@@ -49,6 +52,17 @@ const Home = (props: any) => {
             duration: 0.01,
             ease: Power3.easeInOut
         });
+
+
+        // handling circles animations
+        const targets = document.getElementsByClassName(".circles");
+        gsap.to(targets[quesIndex], {
+            css: {
+                backgroundColor: 'green'
+            }
+        })
+
+        // setting answers in here and parent state
         setSelectedAns(ans);
         setQuestions((current: QuestionsInterface) => {
             const filteredQues = current.find((item: QuestionInterface) => item.id === questions[quesIndex].id);
@@ -58,6 +72,8 @@ const Home = (props: any) => {
             filteredQues.answer = ans
             return (current)
         })
+
+        // calculating answered questions count
         calculateAnsweredQuestionsCount();
 
     }
@@ -115,7 +131,7 @@ const Home = (props: any) => {
                     <ProgressBar answeredQuestionsCount={answeredQuestionsCount} total={questions.length} />
                     <div className='w-full flex flex-wrap'>
                         {questions.map((item: QuestionInterface, key: number) => (
-                            <div className={`w-10 h-10 rounded-full ${questions[key].answer ? 'bg-lime-700' : 'bg-gray-300'} bg-gray-300 mx-1 mb-1 ${quesIndex === key ? 'border border-lime-600' : null} cursor-pointer`}>
+                            <div className={`w-10 h-10 rounded-full .circles ${questions[quesIndex].answer ? 'bg-lime-700' : 'bg-gray-300'} bg-gray-300 mx-1 mb-1 ${quesIndex === key ? 'border border-lime-600' : null} cursor-pointer`}>
                                 <div className="mx-auto text-white w-full  h-full flex justify-center items-center" key={key} onClick={() => handleSwitchQues(key)}>
                                     {key + 1}
                                 </div>

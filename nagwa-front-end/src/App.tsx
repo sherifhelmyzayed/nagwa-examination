@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, redirect, useNavigate, Navigate } from 'react-router-dom'
+import axios from 'axios'
 import Exam from './views/Exam'
 import Result from './views/Result'
 import './App.css'
@@ -16,7 +17,10 @@ function App() {
 
   // for axios call get questions endpoint
   useEffect(() => {
-    setQuestions(Data.wordList)
+    axios.get(`http://localhost:4000/word`)
+    .then(res => {
+      setQuestions(res.data);
+    })
   }, [])
 
 
